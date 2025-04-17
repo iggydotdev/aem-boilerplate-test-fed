@@ -9,12 +9,12 @@ export default async function decorate(block) {
   // Fetch nav content
   const navMeta = getMetadata("nav");
   console.log(">>> META", navMeta);
-  const navPath = navMeta ? new URL(navMeta).pathname : "/nav";
+  const navPath = navMeta ? new URL(navMeta, window.location).pathname : "/nav";
   console.log(">>> PATH", navPath);
   const fragment = await loadFragment(navPath);
   console.log(">>> FRAGMENT", fragment);
 
-  const html = "HELLO WORLD";
+  const html = fragment.innerHTML ?? "";
 
   // Create header DOM structure
   const header = document.createElement("div");
